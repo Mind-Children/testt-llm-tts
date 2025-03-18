@@ -1,0 +1,1 @@
+- for whisper install `cupy-cuda12x`
