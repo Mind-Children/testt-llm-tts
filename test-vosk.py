@@ -8,12 +8,6 @@ from vosk import Model, KaldiRecognizer
 
 q = queue.Queue()
 
-def int_or_str(text):
-    try:
-        return int(text)
-    except ValueError:
-        return text
-
 def callback(indata,frames,time,status):
     if status:
         print(status,file=sys.stderr)
@@ -23,10 +17,9 @@ try:
     device_info = sd.query_devices(kind="input")
     samplerate = int(device_info["default_samplerate"])
     model = Model(lang="en-us")
-
+    rec = KaldiRecognizer(model,samplerate)
     with sd.RawInputStream(samplerate=samplerate,blocksize=8000,device=sd.default.device,dtype="int16",channels=1,callback=callback):
         print("press Ctrl+C to stop recording")
-        rec = KaldiRecognizer(model,samplerate)
         while True:
             data = q.get()
             if rec.AcceptWaveform(data):

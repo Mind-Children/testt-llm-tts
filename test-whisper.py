@@ -21,7 +21,6 @@ def callback(indata,frames,time,status):
     if status:
         print(status,file=sys.stderr)
     print(indata.shape)
-    write('test.wav',SAMPLE_RATE,indata)
     q.put(indata)
 
 try:
