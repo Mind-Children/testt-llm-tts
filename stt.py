@@ -7,6 +7,10 @@ from faster_whisper import WhisperModel
 
 SAMPLE_RATE = 48000
 SILENCE_THRESHOLD = 0.1
+DEVICE = 24
+
+devices = sd.query_devices()
+print(devices)
 
 def find_terminator(text):
     # find terminator ('.', '!' or '?' but not '...')
@@ -41,7 +45,7 @@ class STT:
         self.audio_queue.append((time.time(),resampled.astype(np.float32) / 32768.0))
 
     def streaming_thread(self):
-        with sd.RawInputStream(samplerate=48000,blocksize=8000,device=0,dtype="int16",channels=1,callback=self.read_audio):
+        with sd.RawInputStream(samplerate=48000,blocksize=8000,device=DEVICE,dtype="int16",channels=1,callback=self.read_audio):
             while True:
                 while len(self.audio_queue) > 0:
                     max = np.max(np.abs(self.audio_queue[0][1]))

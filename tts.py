@@ -3,6 +3,9 @@ import sounddevice as sd
 import numpy as np
 import time
 import threading
+import nltk
+
+nltk.download('punkt_tab')
 
 class TTS:
     def __init__(self):
