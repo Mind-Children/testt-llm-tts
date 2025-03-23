@@ -7,7 +7,7 @@ from faster_whisper import WhisperModel
 
 SAMPLE_RATE = 48000
 SILENCE_THRESHOLD = 0.1
-DEVICE = 24
+DEVICE = 25
 
 devices = sd.query_devices()
 print(devices)
