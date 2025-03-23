@@ -22,7 +22,7 @@ class TTS:
             while True:
                 if len(self.utterance_queue) > 0:
                     utterance = self.utterance_queue.pop(0)
-                    output = self.model.inference(utterance,"ben.wav",alpha=0.1,beta=0.1,output_wav_file="output.wav")
+                    output = self.model.inference(utterance,"ben.wav",output_wav_file="output.wav")
                     sd.play(output,samplerate=24000)
                     sd.wait()
                 else:
