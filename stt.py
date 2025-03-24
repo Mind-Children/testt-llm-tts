@@ -7,7 +7,6 @@ from faster_whisper import WhisperModel
 
 SAMPLE_RATE = 48000
 SILENCE_THRESHOLD = 0.1
-DEVICE = 25
 
 devices = sd.query_devices()
 print(devices)
@@ -45,7 +44,7 @@ class STT:
         self.audio_queue.append((time.time(),resampled.astype(np.float32) / 32768.0))
 
     def streaming_thread(self):
-        with sd.RawInputStream(samplerate=48000,blocksize=8000,device=DEVICE,dtype="int16",channels=1,callback=self.read_audio):
+        with sd.RawInputStream(samplerate=48000,blocksize=8000,dtype="int16",channels=1,callback=self.read_audio):
             while True:
                 while len(self.audio_queue) > 0:
                     max = np.max(np.abs(self.audio_queue[0][1]))
@@ -77,7 +76,7 @@ class STT:
                                     self.previous_text = text
                             else:
                                 non_matching_index = -1
-                                for i in range(len(self.previous_text)):
+                                for i in range(min(len(text),len(self.previous_text))):
                                     if text[i] != self.previous_text[i]:
                                         non_matching_index = i
                                         break

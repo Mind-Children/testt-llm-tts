@@ -6,10 +6,17 @@ import threading
 import nltk
 
 #nltk.download('punkt_tab')
-DEVICE = 24
 
-devices = sd.query_devices()
-print(devices)
+#VOICE = "arnold"
+#VOICE = "ben"
+VOICE = "scarlett"
+#VOICE = "obi-wan"
+#VOICE = "louisck"
+#VOICE = "silverhand"
+#VOICE = "data"
+
+#devices = sd.query_devices()
+#print(devices)
 
 class TTS:
     def __init__(self):
@@ -18,11 +25,11 @@ class TTS:
         threading.Thread(target=self.streaming_thread).start()
 
     def streaming_thread(self):
-        with sd.RawOutputStream(samplerate=48000,device=DEVICE,channels=1,dtype=np.int16):
+        with sd.RawOutputStream(samplerate=48000,channels=1,dtype=np.int16):
             while True:
                 if len(self.utterance_queue) > 0:
                     utterance = self.utterance_queue.pop(0)
-                    output = self.model.inference(utterance,"ben.wav",output_wav_file="output.wav")
+                    output = self.model.inference(utterance,f"voices/{VOICE}.wav",beta=0.7)
                     sd.play(output,samplerate=24000)
                     sd.wait()
                 else:
