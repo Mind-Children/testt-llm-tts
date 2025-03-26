@@ -2,7 +2,7 @@
 
 `pip` and what they call 'packages' is one giant flaming mountain of lazy-ass crap...
 
-To speed up your experience without having to put any faith into docker containers, here are some tips:
+Depending on the target platform (hardware, Jetpack version, Linux version, etc.) you might need to play around with different versions of python to get the right mix that works. For the Jetson Orin, I managed to make it work with Ubuntu 22.04, python 3.10, Jetpack 6.1, CUDA 12.6
 
 ## Python version
 
@@ -29,7 +29,7 @@ Manually pull the model.
 ollama pull <model>
 ```
 
-## Torch
+## `_pickle.UnpicklingError: Weights only load failed. This file can still be loaded, to do so you have two options, do those steps only if you trust the source of the checkpoint.`
 
-Make sure you have version <=2.5.1. Newer versions have breaking changes with the TTS/STT solutions tried.
+This requires some hacking in the package that gives the error. The actual error does not occur in torch, but in calling `torch.load`, because they updated a parameter. For instance, if the package is StyleTTS, edit the file `venv/lib/python3.11/site-packages/styletts2/models.py`. Edit all occurrances of `torch.load` and att the parameter `weights_only=False` to the function call.
 
