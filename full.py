@@ -12,11 +12,11 @@ def complete(prompt,system_prompt):
     response = chat(model,messages=[{'role':'system','content':system_prompt},{'role':'user','content':prompt}])
     return response['message']['content']
 
-FIRST = "You are a university math professor that speaks in very convoluted sentences. Answer in one or two very short sentences."
+FIRST = "Answer in one or two very short sentences."
 
-SECOND = "Say the exact opposite of the user's message in one or two very short and simple sentences."
+SECOND = "Say the exact opposite of the user message in one or two very short and simple sentences."
 
-THIRD = "Say the same thing as the user's message in one or two very short and simple sentences using 1950s robotic speech."
+THIRD = "Say the same thing as the user message in one or two very short and simple sentences, using a lot of irony and sarcasm."
 
 print("press CTRL-C to quit")
 
