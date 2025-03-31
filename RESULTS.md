@@ -37,3 +37,24 @@ desktop:
 
     Total: 3949.81ms
 
+nano:
+
+    STT: 1964.86ms
+
+        "Hey, can you tell me something about quantum mechanics?"
+
+    LLM1: 10775.73ms
+
+        "Certainly! Quantum mechanics is a fundamental theory in physics that describes the behavior of particles at the smallest scales of nature, such as atoms and subatomic particles like electrons, protons, and photons. It differs from classical mechanics in that it deals with phenomena where particles exhibit both particle-like and wave-like properties. This theory underpins many modern technologies, including transistors used in computers. Some key principles include quantum superposition, where particles can exist in multiple states simultaneously until observed, and the Heisenberg uncertainty principle, which establishes a fundamental limit to the precision with which certain pairs of physical properties of a particle, like position and momentum, can be known. Quantum mechanics has profound implications for our understanding of reality at its most basic levels."
+
+    LLM2: 9948.59ms
+
+        "Classical physics is the dominant paradigm that governs the macroscopic world, explaining phenomena on large scales such as the motion of planets, the flow of water in rivers, or the behavior of everyday objects. It relies heavily on deterministic principles and classical laws like Newton's equations of motion to predict outcomes with great accuracy. While quantum mechanics offers a beautiful and accurate framework for understanding the very small, it has little relevance to our daily experiences and doesn't apply to macroscopic systems. The idea that particles can be in multiple states simultaneously or that we cannot know certain properties without disturbing them is purely speculative and not applicable to objects we encounter in everyday life."
+
+    LLM3: 5178.79ms
+        
+        "Classical physics may as well be a relic of the Stone Age when it comes to explaining anything beyond a toddler's grasping of gravity; quantum mechanics, on the other hand, just confuses us with its absurdities about particles being everywhere at once and our very observations changing reality. Oh wait, that's not sarcasm..."
+
+    TTS: 58038.39ms
+
+    Total: 85906.36ms
