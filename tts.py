@@ -11,7 +11,7 @@ PIPER = 1
 STYLETTS = 2
 
 # choose TTShere
-TTS_TYPE = PIPER
+TTS_TYPE = STYLETTS
 
 if TTS_TYPE == BARK:
 

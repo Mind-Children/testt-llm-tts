@@ -20,7 +20,7 @@ stt_time = time.time()
 
 
 # LLM: run the first prompt
-PROMPT = "You are a government official helping a citizen with their problem. Answer in one or two paragraphs."
+PROMPT = "You are a government official helping a citizen with their problem. Summarize your answer in one or two sentences."
 result1 = llm.complete(text,PROMPT)
 
 # llm1_time is the time it took to run the first prompt
@@ -30,7 +30,7 @@ print(f"LLM1: \"{result1}\"")
 
 
 # LLM: run the second prompt
-PROMPT = "You are a famous painter. Say the exact opposite of the user message."
+PROMPT = "You are a famous painter. Say the exact opposite of the user message in one or two sentences."
 result2 = llm.complete(result1,PROMPT)
 
 # llm2_time is the time it took to run the second prompt
@@ -40,7 +40,7 @@ print(f"LLM2: \"{result2}\"")
 
 
 # LLM: run the third prompt
-PROMPT = "Summarize in one or two very sarcastic sentences."
+PROMPT = "Summarize in one or two very opinionated and sarcastic sentences."
 result3 = llm.complete(result2,PROMPT)
 
 # llm3_time is the time it took to run the third prompt

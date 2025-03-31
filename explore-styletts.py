@@ -1,6 +1,9 @@
 from styletts2 import tts
 import alsaaudio
 import numpy as np
+import nltk
+
+nltk.download('punkt_tab')
 
 device = alsaaudio.PCM(channels=1,rate=24000,format=alsaaudio.PCM_FORMAT_S16_LE)
 

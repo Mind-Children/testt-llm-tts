@@ -18,7 +18,7 @@ source venv/bin/activate
 Someone compiled ctranslate2 with the wrong CUDA version. Install exactly version 4.4.0, and this should disappear:
 
 ```
-pip install ctranslate2-4.4.0
+pip install ctranslate2==4.4.0
 ```
 
 ## `ollama._types.ResponseError: model "<model>" not found, try pulling it first (status code: 404)`
@@ -32,4 +32,26 @@ ollama pull <model>
 ## `_pickle.UnpicklingError: Weights only load failed. This file can still be loaded, to do so you have two options, do those steps only if you trust the source of the checkpoint.`
 
 This requires some hacking in the package that gives the error. The actual error does not occur in torch, but in calling `torch.load`, because they updated a parameter. For instance, if the package is StyleTTS, edit the file `venv/lib/python3.11/site-packages/styletts2/models.py`. Edit all occurrances of `torch.load` and att the parameter `weights_only=False` to the function call.
+
+## CTranslate2 not compiled with CUDA support
+
+Ok, so here's what you do (assuming the venv for the target project is enabled):
+
+```
+pip install pybind11 wheel
+sudo apt install build-essential cmake libomp-dev cuda-toolkit cudnn
+git clone https://www.github.com/OpenNMT/CTranslate2 --recursive
+cd CTranslate2
+mkdir build
+cd build
+cmake .. -DWITH_CUDA=ON -DWITH_CUDNN=ON -DWITH_MKL=OFF -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda
+make
+cd ..
+cd python
+python setup.py bdist_wheel
+cd dist
+pip install ctranslate2-4.5.0-cp310-cp310-linux_aarch64.whl
+```
+
+That last file is the compiled wheel, which you can save somewhere for other people using the same platform.
 
