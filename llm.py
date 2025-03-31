@@ -1,7 +1,7 @@
-from ollama import chat,generate
+from ollama import chat
 
-#LLM_MODEL = 'gemma2:2b'
-LLM_MODEL = 'qwen2.5:0.5b'
+LLM_MODEL = 'gemma2:2b'
+#LLM_MODEL = 'qwen2.5:0.5b'
 #LLM_MODEL = 'qwen2.5:1.5b'
 #LLM_MODEL = 'qwen2.5:3b'
 #LLM_MODEL = 'tinyllama:1.1b'
