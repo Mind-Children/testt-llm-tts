@@ -1,8 +1,8 @@
 # HOW TO FIX ALL THE PYTHON ISSUES YOU MIGHT ENCOUNTER
 
-`pip` and what they call 'packages' is one giant flaming mountain of lazy-ass crap...
+Unfortunately, `pip` and what they call 'packages' is one giant flaming mountain of fecal matter. Here are some experiences that might come in handy navigating through it.
 
-Depending on the target platform (hardware, Jetpack version, Linux version, etc.) you might need to play around with different versions of python to get the right mix that works. For the Jetson Orin, I managed to make it work with Ubuntu 22.04, python 3.10, Jetpack 6.1, CUDA 12.6
+Depending on the target platform (hardware, Jetpack version, Linux version, etc.) you might need to play around with different versions of python to get the right mix that works. For the Jetson Orin, I managed to make it work with Ubuntu 22.04, python 3.11, Jetpack 6.1, CUDA 12.6.
 
 ## Python version
 
@@ -11,6 +11,14 @@ I got the least amount of problems with `python3.11` on `venv`. 3.10 and 3.12 al
 ```
 python3.11 -m venv venv
 source venv/bin/activate
+```
+
+## Valuable Resources
+
+If there is a problem with a pip package on a Jetson, go to this link to see if there is a specifically optimized wheel for it:
+
+```
+https://pypi.jetson-ai-lab.dev/jp6/cu126
 ```
 
 ## `Unable to load any of {libcudnn_cnn.so.9.1.0, libcudnn_cnn.so.9.1, libcudnn_cnn.so.9, libcudnn_cnn.so}`
@@ -54,4 +62,3 @@ pip install ctranslate2-4.5.0-cp310-cp310-linux_aarch64.whl
 ```
 
 That last file is the compiled wheel, which you can save somewhere for other people using the same platform.
-

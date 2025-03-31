@@ -15,8 +15,10 @@ if STT_TYPE == WHISPER:
     from faster_whisper import WhisperModel
     SAMPLE_RATE = 48000
     SILENCE_THRESHOLD = 0.1
-    DEVICE = "cpu"
-    COMPUTE_TYPE = "int8"
+    DEVICE = "cuda"
+    #DEVICE = "cpu"
+    COMPUTE_TYPE = "float16"
+    #COMPUTE_TYPE = "int8"
 
 
     def find_terminator(text):
