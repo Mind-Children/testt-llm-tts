@@ -15,6 +15,9 @@ if STT_TYPE == WHISPER:
     from faster_whisper import WhisperModel
     SAMPLE_RATE = 48000
     SILENCE_THRESHOLD = 0.1
+    DEVICE = "cpu"
+    COMPUTE_TYPE = "int8"
+
 
     def find_terminator(text):
         # find terminator ('.', '!' or '?' but not '...')
@@ -36,7 +39,7 @@ class STT:
 
         if STT_TYPE == WHISPER:
 
-            self.model = WhisperModel("small.en", download_root="./models", device="cuda",compute_type="float16")
+            self.model = WhisperModel("small.en", download_root="./models", device=DEVICE,compute_type=COMPUTE_TYPE)
 
         self.previous_text = ""
         self.last_timestamp = 0
