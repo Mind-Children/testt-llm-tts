@@ -17,8 +17,8 @@ if STT_TYPE == WHISPER:
     SILENCE_THRESHOLD = 0.1
     DEVICE = "cuda"
     #DEVICE = "cpu"
-    COMPUTE_TYPE = "float16"
-    #COMPUTE_TYPE = "int8"
+    #COMPUTE_TYPE = "float16"
+    COMPUTE_TYPE = "int8"
 
 
     def find_terminator(text):
