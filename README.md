@@ -34,53 +34,45 @@ This repo explores and tests some pre-made solutions for STT, LLM and TTS that w
 sudo apt install curl libportaudio2
 ```
 
-and if you run an NVidia GPU:
-
-```
-sudo apt install libcudnn-dev
-```
-
 2. Make sure you have ollama installed:
 
 ```
 curl -fsSL https://ollama.com/install.sh | sh
 ```
 
-3. Make sure you can run Python 3.11:
+3. Make sure you can start python venv:
 
 ```
-sudo apt install python3.11 python3.11-venv python3.11-dev
+sudo apt install python3.10-venv
 ```
 
-If that fails, you might need to add access to older Python releases first:
+NOTE: It might turn out that Python 3.10 is not working for you. Feel free to try other versions.
+
+4. For Jetson, it might be necessary to recompile CTranslate2. See `CTRANSLATE2.md` for info on how to do this.
+
+5. Open a venv and install the dependencies:
 
 ```
-sudo add-apt-repository ppa:deadsnakes/ppa
-```
-
-NOTE: It might turn out that Python 3.11 is not working for you. It definitely makes sense to attempt 3.10 or 3.12 as well, though some tools are not yet available for 3.12.
-
-4. Open a venv:
-
-```
-python3.11 -m venv venv
+python3.10 -m venv venv
 source venv/bin/activate
-```
-
-5. For `amd64` or some other form of `x86`, it should work pretty good automatically. For NVidia Jetson with Jetpack 6.1 with CUDA 12.6, use https://pypi.jetson-ai-lab.dev/jp6/cu126 and first install the following wheels manually:
-
-```
-pip install https://pypi.jetson-ai-lab.dev/jp6/cu126/+f/a98/2f809759cf04d/onnxruntime_gpu-1.20.0-cp311-cp311-linux_aarch64.whl
-pip install https://pypi.jetson-ai-lab.dev/jp6/cu126/+f/e8d/9b4c684457163/ctranslate2-4.4.0-cp311-cp311-linux_aarch64.whl
-```
-
-6. Install everything else:
-
-```
 pip install sounddevice faster_whisper ollama nltk scipy piper-tts
 ```
 
+6. Download the LLM models:
+
+```
+ollama pull gemma2:2b
+ollama pull qwen2.5:1.5b
+ollama pull qwen2.5:3b
+ollama pull llama3.2:1b
+ollama pull llama3.2:3b
+```
+
 7. Download the Piper TTS voices:
+
+```
+mkdir models
+```
 
 Go to https://huggingface.co/rhasspy/piper-voices/tree/main/en/en_US/amy/low, download the `.onnx` and `.onnx.json` and place them in `models/`. If you want another voice than Amy, make sure the name matches in `tts.py`.
 
@@ -98,7 +90,7 @@ Edit `llm.py` and uncommenting the one you like.
 
 10. Run `python fixed.py` to do the measurement.
 
-11. Goto 9
+11. Goto 8
 
 # LLM Results
 
